@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Barbearia Imperial</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0b0b0b;
+            color: white;
+        }
+
+        /* =========================
+           MENU
+        ========================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.96);
+            border-bottom: 1px solid #292929;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            display: block;
+            color: #c59b52;
+            font-size: 12px;
+            letter-spacing: 4px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .menu a:hover {
+            color: #c59b52;
+        }
+
+
+        /* =========================
+           INÍCIO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    rgba(0,0,0,0.7),
+                    rgba(0,0,0,0.85)
+                ),
+                url("https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            margin: auto;
+            padding: 30px;
+        }
+
+        .subtitulo,
+        .titulo-pequeno {
+            color: #c59b52;
+            font-size: 13px;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+
+        .hero h1 {
+            max-width: 700px;
+            margin: 20px 0;
+            font-size: clamp(45px, 7vw, 85px);
+            line-height: 1;
+        }
+
+        .hero h1 span,
+        h2 span {
+            color: #c59b52;
+        }
+
+        .hero p:not(.subtitulo) {
+            max-width: 550px;
+            color: #cfcfcf;
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
+
+        .botao {
+            display: inline-block;
+            padding: 16px 28px;
+            background: #c59b52;
+            color: #080808;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .botao:hover {
+            background: #e0bd7a;
+            transform: translateY(-3px);
+        }
+
+
+        /* =========================
+           SOBRE
+        ========================= */
+
+        .sobre {
+            max-width: 1100px;
+            margin: auto;
+            padding: 110px 30px;
+
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .sobre h2,
+        .servicos h2,
+        .precos h2,
+        .contato h2 {
+            font-size: 45px;
+            margin: 15px 0 25px;
+        }
+
+        .sobre-texto p:not(.titulo-pequeno) {
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .sobre-box {
+            border: 1px solid #333;
+            padding: 35px;
+            text-align: center;
+        }
+
+        .sobre-box strong {
+            display: block;
+            color: #c59b52;
+            font-size: 40px;
+            margin-top: 10px;
+        }
+
+        .sobre-box p {
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+
+        /* =========================
+           SERVIÇOS
+        ========================= */
+
+        .servicos {
+            padding: 110px 30px;
+            background: #111;
+            text-align: center;
+        }
+
+        .cards {
+            max-width: 1200px;
+            margin: 50px auto 0;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: #181818;
+            border: 1px solid #292929;
+            padding: 35px 25px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #c59b52;
+        }
+
+        .icone {
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #999;
+            line-height: 1.6;
+            min-height: 80px;
+        }
+
+        .card strong {
+            display: block;
+            margin-top: 20px;
+            color: #c59b52;
+            font-size: 20px;
+        }
+
+
+        /* =========================
+           PREÇOS
+        ========================= */
+
+        .precos {
+            max-width: 900px;
+            margin: auto;
+            padding: 110px 30px;
+            text-align: center;
+        }
+
+        .precos-lista {
+            margin-top: 40px;
+        }
+
+        .preco {
+            display: flex;
+            justify-content: space-between;
+            padding: 22px 10px;
+            border-bottom: 1px solid #292929;
+        }
+
+        .preco span {
+            color: #ccc;
+        }
+
+        .preco strong {
+            color: #c59b52;
+        }
+
+
+        /* =========================
+           CONTATO
+        ========================= */
+
+        .contato {
+            padding: 120px 30px;
+            background: #111;
+            text-align: center;
+        }
+
+        .contato h2 {
+            max-width: 700px;
+            margin: 15px auto;
+        }
+
+        .contato p:not(.titulo-pequeno) {
+            color: #999;
+            margin-bottom: 30px;
+        }
+
+        .whatsapp {
+            background: #25d366;
+            color: white;
+        }
+
+        .whatsapp:hover {
+            background: #20b957;
+        }
+
+
+        /* =========================
+           RODAPÉ
+        ========================= */
+
+        footer {
+            padding: 40px 30px;
+            text-align: center;
+            border-top: 1px solid #292929;
+        }
+
+        footer .logo {
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            color: #777;
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .menu {
+                display: none;
+            }
+
+            .sobre {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 50px;
+            }
+
+            .sobre h2,
+            .servicos h2,
+            .precos h2,
+            .contato h2 {
+                font-size: 35px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="logo">
+ <img src="barbearia.png" width="70"> BARBEARIA IMPERIAL
+                                
+            </div>
+
+            <ul class="menu">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#precos">Preços</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+
+    <section id="inicio" class="hero">
+
+        <div class="hero-content">
+
+            <p class="subtitulo">
+                ESTILO • QUALIDADE • TRADIÇÃO
+            </p>
+
+            <h1>
+                Seu estilo começa
+                <span>aqui.</span>
+            </h1>
+
+            <p>
+                Cortes modernos, barba impecável e aquele atendimento
+                que você merece.
+            </p>
+
+            <a href="#contato" class="botao">
+                AGENDAR HORÁRIO
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <section id="sobre" class="sobre">
+
+        <div class="sobre-texto">
+
+            <p class="titulo-pequeno">
+                SOBRE NÓS
+            </p>
+
+            <h2>
+                Mais que uma barbearia,
+                <span>uma experiência.</span>
+            </h2>
+
+            <p>
+                Na Barbearia Imperial, unimos tradição e modernidade
+                para oferecer cortes e cuidados masculinos de alta
+                qualidade.
+            </p>
+
+            <p>
+                Nossa equipe está preparada para deixar você com
+                um visual renovado e confiante.
+            </p>
+
+        </div>
+
+        <div class="sobre-box">
+
+            <strong>5+</strong>
+            <p>Anos de experiência</p>
+
+            <strong>2.000+</strong>
+            <p>Clientes atendidos</p>
+
+        </div>
+
+    </section>
+
+
+
+    <section id="servicos" class="servicos">
+
+        <p class="titulo-pequeno">
+            O QUE FAZEMOS
+        </p>
+
+        <h2>
+            Nossos <span>Serviços</span>
+        </h2>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <div class="icone"><img src="corte.jpeg" width="100"></div>
+
+                <h3>
+                    Corte Masculino
+                </h3>
+
+                <p>
+                    Cortes modernos e tradicionais feitos
+                    de acordo com seu estilo.
+                </p>
+
+                <strong>
+                    R$ 35,00
+                </strong>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icone"><img src="barba.jfif" width="115"></div>
+
+                <h3>
+                    Barba
+                </h3>
+
+                <p>
+                    Modelagem, acabamento e cuidados para
+                    uma barba impecável.
+                </p>
+
+                <strong>
+                    R$ 25,00
+                </strong>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icone"><img src="corteebarba.jpg" width="150"></div>
+
+                <h3>
+                    Corte + Barba
+                </h3>
+
+                <p>
+                    O combo completo para renovar seu
+                    visual.
+                </p>
+
+                <strong>
+                    R$ 55,00
+                </strong>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icone">  
+                    <img src="platinado.jfif" width="150">
+                </div>
+
+                <h3>
+                    Platinado
+                </h3>
+
+                <p>
+                    Transforme seu visual com uma coloração
+                    moderna e personalizada.
+                </p>
+
+                <strong>
+                    R$ 120,00
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section id="precos" class="precos">
+
+        <p class="titulo-pequeno">
+            TABELA DE PREÇOS
+        </p>
+
+        <h2>
+            Escolha seu <span>estilo</span>
+        </h2>
+
+        <div class="precos-lista">
+
+            <div class="preco">
+                <span>Corte tradicional</span>
+                <strong>R$ 40</strong>
+            </div>
+
+            <div class="preco">
+                <span>Pezinho</span>
+                <strong>R$ 15</strong>
+            </div>
+
+            <div class="preco">
+                <span>Barba</span>
+                <strong>R$ 25</strong>
+            </div>
+
+            <div class="preco">
+                <span>Corte + Barba</span>
+                <strong>R$ 55</strong>
+            </div>
+
+            <div class="preco">
+                <span>Platinado</span>
+                <strong>R$ 120</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="contato" class="contato">
+
+        <p class="titulo-pequeno">
+            FALE CONOSCO
+        </p>
+
+        <h2>
+            Pronto para mudar
+            <span>seu visual?</span>
+        </h2>
+
+        <p>
+            Entre em contato pelo WhatsApp e agende seu horário.
+        </p>
+
+        <a
+            href="https://wa.me/5511991479201?text=Olá%2C%20gostaria%20de%20agendar%20um%20horário%20na%20barbearia."
+            target="_blank"
+            class="botao whatsapp">
+
+            AGENDAR PELO WHATSAPP
+
+        </a>
+
+    </section>
+
+    <footer>
+
+        <div class="logo">
+            BARBEARIA
+            <span>IMPERIAL</span>
+        </div>
+
+        <p>
+            © 2026 Barbearia Imperial. Todos os direitos reservados.
+        </p>
+
+    </footer>
+
+</body>
+</html>
